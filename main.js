@@ -64,19 +64,16 @@ new Vue({
       }
     },
       
-    // SEARCH LESSONS: Filter lessons based on search query
     async searchLessons() {
       try {
         console.log('🔍 Searching lessons:', this.searchQuery);
           
-        // If search is empty, show all lessons
         if (!this.searchQuery.trim()) {
             this.displayedLessons = [...this.allLessons];
             this.sortLessons();
             return;
         }
             
-        // Make API call to search lessons
         const response = await fetch(`${this.apiUrl}/search?query=${encodeURIComponent(this.searchQuery)}`);
             
         if (!response.ok) {
@@ -87,10 +84,8 @@ new Vue({
             
         console.log(`✅ Found ${searchResults.length} results`);
             
-        // Update displayed lessons
         this.displayedLessons = searchResults;
             
-        // Apply current sorting
         this.sortLessons();
             
         } catch (error) {
