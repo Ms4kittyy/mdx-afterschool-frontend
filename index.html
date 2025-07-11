@@ -28,4 +28,17 @@
                 </div>
             </nav>
         </header>
+
+        <div class="container">
+            <!-- Search and Sort Section -->
+            <div class="search-sort-section">
+                <div class="search-container">
+                    <input 
+                        type="text" 
+                        v-model="searchQuery"
+                        @input="searchLessons"
+                        class="search-input" 
+                        placeholder="Search for lessons..."
+                    >
+            </div>
 </body>    
