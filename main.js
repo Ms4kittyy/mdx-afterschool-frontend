@@ -14,32 +14,26 @@ new Vue({
       sortBy: 'subject',    
       sortOrder: 'asc',     
       
-      // Shopping Cart
-      cartItems: [],        // Items in the cart
+      cartItems: [],        
       
-      // Checkout Modal
-      showCheckout: false,  // Show/hide checkout modal
-      customerInfo: {       // Customer form data
+      showCheckout: false,  
+      customerInfo: {       
           name: '',
           phone: ''
       },
-      submittingOrder: false, // Show loading state during order submission
-      orderSuccess: null,     // Order success message
-      orderError: null        // Order error message
+      submittingOrder: false, 
+      orderSuccess: null,     
+      orderError: null        
   },
   
-  // COMPUTED PROPERTIES: Values that are calculated based on other data
   computed: {
-      // Calculate total price of items in cart
       cartTotal() {
           return this.cartItems.reduce((total, item) => total + item.price, 0);
       }
   },
   
-  // METHODS: Functions that can be called from the template or other methods
   methods: {
-      
-    // FETCH LESSONS: Get all lessons from the API
+    
     async fetchLessons() {
       try {
         console.log('📚 Fetching lessons from API...');
