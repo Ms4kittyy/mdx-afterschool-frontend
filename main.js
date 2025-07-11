@@ -41,10 +41,8 @@ new Vue({
         this.loading = true;
         this.error = null;
         
-        // Make API call to get lessons
         const response = await fetch(`${this.apiUrl}/lessons`);
         
-        // Check if request was successful
         if (!response.ok) {
             throw new Error(`Failed to fetch lessons: ${response.status}`);
         }
