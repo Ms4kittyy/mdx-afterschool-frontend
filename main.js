@@ -94,7 +94,6 @@ new Vue({
         }
     },
       
-    // SORT LESSONS: Sort the displayed lessons
     sortLessons() {
         console.log(`📊 Sorting by ${this.sortBy} (${this.sortOrder})`);
         
@@ -102,13 +101,11 @@ new Vue({
             let valueA = a[this.sortBy];
             let valueB = b[this.sortBy];
             
-            // Handle string comparisons (case insensitive)
             if (typeof valueA === 'string') {
                 valueA = valueA.toLowerCase();
                 valueB = valueB.toLowerCase();
             }
             
-            // Compare values
             let comparison = 0;
             if (valueA < valueB) {
                 comparison = -1;
@@ -116,7 +113,6 @@ new Vue({
                 comparison = 1;
             }
             
-            // Apply sort order
             return this.sortOrder === 'desc' ? comparison * -1 : comparison;
         });
     },
