@@ -220,7 +220,6 @@ new Vue({
         return iconMap[subject] || 'fas fa-graduation-cap';
     },
     
-    // GET SPACES CLASS: Return CSS class based on available spaces
     getSpacesClass(spaces) {
         if (spaces === 0) return 'spaces-available';
         if (spaces <= 5) return 'spaces-available low';
