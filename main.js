@@ -4,18 +4,15 @@ new Vue({
   data: {
       apiUrl: 'http://localhost:3000', 
       
-      // Lessons Data
-      allLessons: [],        // All lessons from the API
-      displayedLessons: [],  // Lessons currently shown (after search/sort)
+      allLessons: [],        
+      displayedLessons: [],  
+     
+      loading: true,         
+      error: null,          
       
-      // UI State
-      loading: true,         // Show loading spinner
-      error: null,          // Error message to display
-      
-      // Search and Sort
-      searchQuery: '',      // User's search input
-      sortBy: 'subject',    // Current sort field
-      sortOrder: 'asc',     // Current sort order
+      searchQuery: '',     
+      sortBy: 'subject',    
+      sortOrder: 'asc',     
       
       // Shopping Cart
       cartItems: [],        // Items in the cart
