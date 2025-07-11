@@ -117,11 +117,9 @@ new Vue({
         });
     },
       
-    // ADD TO CART: Add a lesson to the shopping cart
     addToCart(lesson) {
         console.log('🛒 Adding to cart:', lesson.subject);
         
-        // Check if lesson is already in cart
         const existingItem = this.cartItems.find(item => item._id === lesson._id);
         
         if (existingItem) {
@@ -129,7 +127,6 @@ new Vue({
             return;
         }
         
-        // Add lesson to cart
         this.cartItems.push({
             _id: lesson._id,
             subject: lesson.subject,
