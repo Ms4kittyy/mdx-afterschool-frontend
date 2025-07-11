@@ -1,10 +1,8 @@
 new Vue({
   el: '#app',
-  
-  // DATA: All the reactive data for our application
+
   data: {
-      // API Configuration
-      apiUrl: 'http://localhost:3000', // Change this to your backend URL
+      apiUrl: 'http://localhost:3000', 
       
       // Lessons Data
       allLessons: [],        // All lessons from the API
