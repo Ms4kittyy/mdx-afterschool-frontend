@@ -57,4 +57,19 @@
                             <option value="spaces">Availability</option>
                         </select>
                     </div>
+
+                    <div class="sort-group">
+                        <label for="sortOrder">Order:</label>
+                        <select 
+                            id="sortOrder" 
+                            v-model="sortOrder"
+                            @change="sortLessons"
+                            class="sort-select"
+                        >
+                            <option value="asc">Ascending</option>
+                            <option value="desc">Descending</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
 </body>    
