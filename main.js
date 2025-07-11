@@ -227,9 +227,6 @@ new Vue({
     }
   },
   
-  // LIFECYCLE HOOKS: Functions that run at specific points in the component lifecycle
-  
-  // MOUNTED: Called after the Vue instance is mounted to the DOM
   async mounted() {
     console.log('🚀 Vue app mounted, loading lessons...');
     
