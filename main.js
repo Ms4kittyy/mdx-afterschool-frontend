@@ -138,7 +138,6 @@ new Vue({
         console.log(`✅ Cart now has ${this.cartItems.length} items`);
     },
       
-    // SUBMIT ORDER: Send order to the backend
     async submitOrder() {
         try {
             console.log('📝 Submitting order...');
@@ -146,7 +145,6 @@ new Vue({
             this.submittingOrder = true;
             this.orderError = null;
             
-            // Prepare order data
             const orderData = {
                 name: this.customerInfo.name,
                 phone: this.customerInfo.phone,
@@ -160,7 +158,6 @@ new Vue({
                 totalAmount: this.cartTotal
             };
             
-            // Make API call to create order
             const response = await fetch(`${this.apiUrl}/orders`, {
                 method: 'POST',
                 headers: {
@@ -178,14 +175,11 @@ new Vue({
             
             console.log('✅ Order placed successfully:', result);
             
-            // Show success message
             this.orderSuccess = result.orderNumber || result.orderId;
             
-            // Clear cart and form
             this.cartItems = [];
             this.customerInfo = { name: '', phone: '' };
             
-            // Refresh lessons to update available spaces
             await this.fetchLessons();
             
         } catch (error) {
