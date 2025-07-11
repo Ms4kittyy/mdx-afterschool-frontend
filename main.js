@@ -47,16 +47,13 @@ new Vue({
             throw new Error(`Failed to fetch lessons: ${response.status}`);
         }
           
-        // Parse JSON response
         const lessons = await response.json();
           
         console.log(`✅ Loaded ${lessons.length} lessons`);
           
-        // Update our data
         this.allLessons = lessons;
-        this.displayedLessons = [...lessons]; // Copy the array
+        this.displayedLessons = [...lessons]; 
           
-        // Apply current sorting
         this.sortLessons();
           
       } catch (error) {
