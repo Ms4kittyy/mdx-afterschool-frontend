@@ -230,7 +230,6 @@ new Vue({
   async mounted() {
     console.log('🚀 Vue app mounted, loading lessons...');
     
-    // Load lessons when the app starts
     await this.fetchLessons();
   }
 });
