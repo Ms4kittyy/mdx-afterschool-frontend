@@ -8,7 +8,6 @@
 </head>
 <body>
     <div id="app">
-        <!-- Header Section -->
         <header class="header">
             <nav class="nav">
                 <div class="logo">
@@ -30,7 +29,6 @@
         </header>
 
         <div class="container">
-            <!-- Search and Sort Section -->
             <div class="search-sort-section">
                 <div class="search-container">
                     <input 
@@ -72,4 +70,156 @@
                     </div>
                 </div>
             </div>
-</body>    
+
+            <div v-if="loading" class="loading">
+                <i class="fas fa-spinner fa-spin" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                <p>Loading lessons...</p>
+            </div>
+
+            <div v-if="error" class="error">
+                <i class="fas fa-exclamation-triangle"></i>
+                {{ error }}
+            </div>
+
+            <div v-if="!loading && !error" class="lessons-grid">
+                <div 
+                    v-for="lesson in displayedLessons" 
+                    :key="lesson._id"
+                    class="lesson-card"
+                >
+                    <div class="lesson-icon">
+                        <i :class="getLessonIcon(lesson.subject)"></i>
+                    </div>
+
+                    <h3 class="lesson-title">{{ lesson.subject }}</h3>
+
+                    <div class="lesson-details">
+                        <div class="lesson-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>{{ lesson.location }}</span>
+                        </div>
+                        
+                        <div class="lesson-detail">
+                            <i class="fas fa-pound-sign"></i>
+                            <span class="price">{{ lesson.price }}</span>
+                        </div>
+                        
+                        <div class="lesson-detail">
+                            <i class="fas fa-users"></i>
+                            <span 
+                                class="spaces-available"
+                                :class="getSpacesClass(lesson.spaces)"
+                            >
+                                {{ lesson.spaces }} spaces available
+                            </span>
+                        </div>
+                    </div>
+
+                    <button 
+                        class="add-to-cart-btn"
+                        :disabled="lesson.spaces === 0"
+                        @click="addToCart(lesson)"
+                    >
+                        <i class="fas fa-plus"></i>
+                        {{ lesson.spaces === 0 ? 'Full' : 'Add to Cart' }}
+                    </button>
+                </div>
+            </div>
+
+            <div v-if="!loading && !error && displayedLessons.length === 0" class="no-results">
+                <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 1rem; color: #bdc3c7;"></i>
+                <p>No lessons found matching your search criteria.</p>
+            </div>
+        </div>
+
+        <div v-if="showCheckout" class="modal-overlay" @click="closeModal">
+            <div class="modal" @click.stop>
+                <h2>Checkout</h2>
+                
+                <div v-if="orderSuccess" class="success">
+                    <i class="fas fa-check-circle"></i>
+                    Order placed successfully! Order ID: {{ orderSuccess }}
+                </div>
+
+                <div v-if="orderError" class="error">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    {{ orderError }}
+                </div>
+
+                <form v-if="!orderSuccess" @submit.prevent="submitOrder">
+                    <div class="form-group">
+                        <label for="customerName">Full Name:</label>
+                        <input 
+                            type="text" 
+                            id="customerName"
+                            v-model="customerInfo.name"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customerPhone">Phone Number:</label>
+                        <input 
+                            type="tel" 
+                            id="customerPhone"
+                            v-model="customerInfo.phone"
+                            required
+                        >
+                    </div>
+
+                    <div class="cart-summary">
+                        <h3>Order Summary</h3>
+                        <div v-for="item in cartItems" :key="item._id" class="cart-item">
+                            <span>{{ item.subject }} ({{ item.location }})</span>
+                            <span class="price">£{{ item.price }}</span>
+                        </div>
+                        <hr>
+                        <div class="cart-item">
+                            <strong>Total: £{{ cartTotal }}</strong>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                        <button 
+                            type="button" 
+                            class="btn btn-secondary" 
+                            @click="closeModal"
+                            style="flex: 1;"
+                        >
+                            Cancel
+                        </button>
+                        <button 
+                            type="submit" 
+                            class="btn btn-primary"
+                            :disabled="submittingOrder"
+                            style="flex: 1;"
+                        >
+                            <span v-if="submittingOrder">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                Placing Order...
+                            </span>
+                            <span v-else>
+                                Place Order
+                            </span>
+                        </button>
+                    </div>
+                </form>
+
+                <button 
+                    v-if="orderSuccess" 
+                    class="btn btn-primary" 
+                    @click="closeModal"
+                    style="width: 100%; margin-top: 1rem;"
+                >
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    
+    <script src="./js/index.js"></script>
+</body>
+</html>
+    
