@@ -41,4 +41,20 @@
                         placeholder="Search for lessons..."
                     >
             </div>
+
+            <div class="sort-controls">
+                    <div class="sort-group">
+                        <label for="sortBy">Sort by:</label>
+                        <select 
+                            id="sortBy" 
+                            v-model="sortBy"
+                            @change="sortLessons"
+                            class="sort-select"
+                        >
+                            <option value="subject">Subject</option>
+                            <option value="location">Location</option>
+                            <option value="price">Price</option>
+                            <option value="spaces">Availability</option>
+                        </select>
+                    </div>
 </body>    
