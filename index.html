@@ -7,5 +7,25 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    
+    <div id="app">
+        <!-- Header Section -->
+        <header class="header">
+            <nav class="nav">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    After School Classes
+                </div>
+                <div class="nav-buttons">
+                    <button 
+                        class="btn btn-secondary" 
+                        :disabled="cartItems.length === 0"
+                        @click="showCheckout = true"
+                    >
+                        <i class="fas fa-shopping-cart"></i>
+                        Cart
+                        <span class="cart-count">{{ cartItems.length }}</span>
+                    </button>
+                </div>
+            </nav>
+        </header>
 </body>    
