@@ -37,3 +37,9 @@ body {
     align-items: center;
     gap: 0.5rem;
 }
+
+.nav-buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
