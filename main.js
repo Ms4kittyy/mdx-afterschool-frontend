@@ -190,19 +190,16 @@ new Vue({
         }
     },
       
-    // CLOSE MODAL: Close the checkout modal
     closeModal() {
         this.showCheckout = false;
         this.orderSuccess = null;
         this.orderError = null;
         
-        // If order was successful, reset form
         if (this.orderSuccess) {
             this.customerInfo = { name: '', phone: '' };
         }
     },
-      
-    // GET LESSON ICON: Return appropriate icon for each subject
+       
     getLessonIcon(subject) {
         const iconMap = {
             'Math': 'fas fa-calculator',
@@ -233,3 +230,4 @@ new Vue({
     await this.fetchLessons();
   }
 });
+
