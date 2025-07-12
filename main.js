@@ -2,7 +2,7 @@ new Vue({
   el: '#app',
 
   data: {
-      apiUrl: 'http://localhost:3000', 
+      apiUrl: 'https://mdx-afterschool-backend.onrender.com', 
       
       allLessons: [],        
       displayedLessons: [],  
